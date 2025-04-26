@@ -1,0 +1,378 @@
+/* @import */
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    font-size: 16px;
+    color: aliceblue;
+}
+header .Logo{
+    position: relative;
+}
+header .Logo img {
+    height: 60px;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+header .Logo span {
+    position: absolute;
+    padding-top: 17px;
+    font-size: 25px;
+    font-family: ABook, Georgia, Times, serif;
+    font-weight: 500;
+}
+header{
+    width: 1300px;
+    max-width: 90%;
+    justify-content: end;
+    max-width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 50px;
+    /* z-index: 999; */
+}
+header nav{
+    z-index: 999;
+}
+header nav ul{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    color: white;
+    justify-content: end;
+    font-size: 20px;
+    
+}
+header nav ul li {
+    list-style: none;
+    margin-left: 60px;
+    /* text-decoration: none;
+    transition: 0.3 ms ease; */
+}
+header nav ul li a {
+    text-decoration: none;
+    transition: 0.3s ease;
+    color: #393bda;
+}
+/* header nav ul li a :hover,
+header nav ul li a.active{
+    color: blue;
+} */
+header nav ul li a:hover{
+    content: "";
+    color:blue;
+    position: relative;
+}
+header nav ul li a:hover::after{
+    content: "";
+    width: 10%;
+    background: blue;
+    height: 2px;
+    position: absolute;
+    bottom: -2px;
+    left: 0px;
+    transition: width 1s ease;
+    border-radius: 100%;
+}
+header nav ul li a:hover::after{
+    width: 100%;
+    /* font-size: 20px; */
+}
+.container{
+    margin: auto;
+    max-width: 1200px;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+.banner{
+    width:100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: -50px;
+    margin-bottom: 0px;
+    background-attachment: fixed;
+}
+/* content -tittle - des */
+.banner .content {
+    text-align: center;
+    color: white;
+    position: relative;
+    text-align: center;
+    left: 7px;
+    top: 50px;
+}
+.banner .content .title{
+    /* font-size: 100px; */
+    animation: animationBlur 5s linear infinite;
+    position: absolute;
+    bottom: 50px;
+    left: -205px;
+    font-weight: 700;
+    /* font-family:  "Big Shoulders Inline", sans-serif; */
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-transform: uppercase;
+    top:-135px;
+}
+@keyframes animationBlur{
+    0%,50%{
+        filter: blur(0);
+    }60%{
+        filter: blur(5px)
+    }100%{
+        filter:blur(0)
+    }
+}
+.banner .content .des {
+    position: absolute;
+    /* text-align: left; */
+    text-align: center;
+    z-index: 999;
+    left: -280px;
+    width: 668px;
+    height: 400px;
+    top: -30px;
+    animation: animationBlur 5s linear infinite;
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+}
+.banner .bgvideo{
+    position: absolute;
+    right:0;
+    bottom:0;
+    min-width: 100%;
+    min-height:100%;
+    z-index: -9099;
+    filter: brightness(0.4);
+}
+.stadium{
+    position: relative;
+    top: -152px;
+    animation: animationBlur 5s linear infinite;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 5px;
+    color: #ddd;
+    text-transform: uppercase;
+    left: -5px;
+    font-weight: 600;
+}
+.List_button{
+    display: flex;
+    justify-content: space-between; /* Cách đều 2 thẻ */
+    gap: 10px; /* Khoảng cách giữa thẻ */
+    padding: 10px;
+}
+a.button{
+    /* display: inline-block; */
+    padding:10px 16px;
+    background: linear-gradient(90deg,#5d6be7 , #04011b);
+    text-decoration: none;
+    border-radius: 20px;
+    position: absolute;
+    margin-top: 15px;
+    left: -155px;
+    width: 10rem;
+    height: 2rem;   
+    opacity: 0.78;
+    z-index: 999;
+    /* position: relative; */
+}
+a.button:hover{
+    opacity: 1;
+}
+a span{
+    text-decoration: none;
+    text-align: center;
+    justify-items: center;
+    padding: 20px 10px;
+    font-size: 20px !important;
+    color:white;
+    position: relative;
+    top:3px;
+    font-family: ABook, Georgia, Times, serif;
+    z-index: 999;
+}
+a.Contact{
+    /* display: inline-block; */
+    padding:10px 16px;
+    background: linear-gradient(90deg,#5d6be7 , #04011b);
+    text-decoration: none;
+    border-radius: 20px;
+    position: absolute;
+    margin-top: 15px;
+    width: 10rem;
+    height: 2rem;
+    opacity: 0.78;
+    z-index: 999;
+    margin-left: 44px;
+}
+a.Contact:hover{
+    opacity: 1;
+}
+a span:hover::after{
+    content: "";
+    width: 10%;
+    background: blue;
+    height: 2px;
+    position: relative;
+    bottom: -2px;
+    left: 0px;
+    transition: width 1s ease;
+    border-radius: 100%;
+}
+a span:hover::after{
+    width: 100%;
+    /* font-size: 20px; */
+}
+.btn{
+    background-color: transparent;
+    padding: 15px 30px;
+    border: 2px solid #225581;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(180deg, #225581 , #050f21);
+}
+.btn:hover{
+    background-color: #04011b;
+}
+    /* About us */
+.section-padding{
+    padding: 80px 0;
+}
+.about {
+    background-image: url("/Project/9950c611368ec098e77510afef25398c.jpg");
+    background-size: cover;
+    width: 100%;
+    background-position: center;
+    background-attachment: fixed;
+    /* background-color: #393bda; */
+}
+.section-title{
+    width: 100%;
+    text-align: center;
+    
+}
+.section-title h2{
+    font-size: 45px;
+    text-transform: uppercase;
+    color: aqua;
+    /*  */
+    font-size: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color:#161e35; /* Màu xanh neon để nổi bật */
+    letter-spacing: 2px;
+    text-align: center;
+    background: linear-gradient(180deg, #1945bd, #72b6e4); /* Gradient xanh lá → xanh dương */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.section-title h2::before{
+    content: attr(data-title);
+    display: block;
+    color: #161e35;
+    font-size: 30px;
+    font-family: 'Dancing Script' ;
+}
+.about .about-item h2{
+    color: white;
+    font-size: 35px;
+    font-family: 'Poppins', sans-serif;
+    /*  */
+    font-family: "Satisfy", cursive;
+    font-size: 40px;
+    font-weight: bold;
+    
+    text-align: left;
+    background: linear-gradient(180deg,  #5998b7, #274662);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+}
+.about .about-item p{
+    font-size: 20px;
+    margin: 15px 0 30px;
+    color: #8aa0af;
+    font-family: "Satisfy", cursive;
+    /* background: linear-gradient(75deg, #424ea5, #9EBAF3); /* Gradient xanh lá → xanh dương */
+    /*-webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;*/
+}
+.about-item{
+    width: calc(100%/2);
+}
+.about .about-item img{
+    padding: 15px;
+    width: 100%;
+    border-radius:70px ;
+}
+
+
+
+
+/* .hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('https://source.unsplash.com/1600x900/?stadium') no-repeat center/cover;
+    }
+.about {
+    padding: 50px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease-in-out;
+}
+.about.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.about-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh; 
+    background: rgba(0, 0, 0, 0.7); 
+    padding: 50px;
+}
+
+.about {
+    text-align: center;
+    max-width: 800px; 
+    background: rgba(255, 255, 255, 0.1); 
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease-in-out;
+}
+
+.about.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.about h2 {
+    font-size: 28px;
+    color: #FFD700;
+    margin-bottom: 15px;
+}
+
+.about p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #fff;
+}*/

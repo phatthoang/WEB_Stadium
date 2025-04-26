@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quản lý sân</title>
+  <link rel="stylesheet" href="style1.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <h2>WEMBLEY STADIUM</h2>
+    <ul>
+      <li>Quản lý sân</li>
+      <li><a class="Thongke" href="Thongkedoanhthu.html">Doanh Thu</a></li>
+      <li>Loại sân & Giá</li>
+      <li>Cài đặt</li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <div class="toolbar">
+      <button>&lt;</button>
+      <input type="date" value="2025-04-09" />
+      <button>&gt;</button>
+      <select>
+        <option>Tất cả trạng thái</option>
+      </select>
+    </div>
+
+    <table class="schedule">
+      <thead>
+        <tr>
+          <th>Thời gian</th>
+          <th>Sân W1</th>
+          <th>Sân W2</th>
+          <th>Sân W3</th>
+          <th>Sân W4</th>
+        </tr>
+      </thead>
+      <tbody id="scheduleBody">
+        <!-- Các dòng thời gian và đặt sân sẽ được JS render -->
+      </tbody>
+    </table>
+    <div id="danhSachDatLich" style="margin-top: 20px;"></div>
+  </div>
+  <button onclick="moModal()">+ Thêm lịch đặt sân</button>
+  <div class="booking-modal" id="bookingModal" style="display: none;">
+    <div class="modal-content">
+      <h3>Thêm lịch đặt mới</h3>
+      <label>Tên người đặt</label>
+      <input type="text" id="tenNguoiDat" placeholder="Nhập tên..." />
+      <label>Mã đặt sân</label>
+      <input type="text" id="maDatSan" placeholder="Mã đặt sân (VD: B64F9)" />
+      <label>Số điện thoại</label>
+      <input type="text" id="soDienThoai" placeholder="Nhập SĐT..." />
+      <label>Sân</label>
+      <select id="chonSan">
+        <option value="W1">Sân W1</option>
+        <option value="W2">Sân W2</option>
+        <option value="W3">Sân W3</option>
+        <option value="W4">Sân W4</option>
+      </select>
+      <label>Thời gian</label>
+      <div>
+        Từ <input type="time" id="thoiGianBatDau" />
+        Đến <input type="time" id="thoiGianKetThuc" />
+      </div>
+      <!-- <label>Giá tiền</label>
+      <input type="number" id="giaTien" placeholder="Giá tiền (VD: 140000)" /> -->
+      <div class="form-group">
+        <label for="giaTien">Giá tiền:</label>
+        <input type="text" id="giaTien" readonly style="background-color: #f0f0f0;" />
+      </div>
+      <label>
+        <input type="checkbox" id="apDungKhuyenMai" />
+        Lịch này áp dụng khuyến mãi?
+      </label>
+      <button onclick="themLich()">Thêm</button>
+      <button onclick="dongModal()">Hủy</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

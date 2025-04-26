@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Đặt Lịch Sân Bóng</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="Logo">
+            <img src ="logo-standard.png" alt=""><span>Wembley Stadium</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a class = "active" href="Home.html">Home</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="Info.html">Info</a></li>
+                <li><a target="_blank" href="Login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="banner">
+        <video autoplay muted loop  class="bgvideo"><source src="e9df5194fcec6c814e07369efe93ae94.mp4" type = "video/mp4"></video>
+        <div class="content">
+            <div class ="stadium">STADIUM</div>
+            <div class="title">WEMBLEY
+            </div>
+            <div class="des">Discover the legendary home of English football – Wembley Stadium.<br>
+                From epic matches to electrifying concerts, this is more than just a stadium — it’s where passion meets glory.
+            </div>
+            <div class="List_button">
+                <a href="booking_demo.html" class="button">
+                    <span class="button-booking-text">
+                        Booking now
+                    </span>
+                </a>
+                <a href="#" class="Contact">
+                    <span class="button-Contact-text"><i></i>Contact us</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Giới thiệu -->
+    <!-- <div class="aboutus">
+        <section class="hero">
+            <h1 id ="heading">Wembley Stadium</h1>
+        </section>
+        
+        <section class="about" id ="about" data-aos="fade-up" data-aos-duration="1500">
+            <h2>Giới Thiệu Sân Vận Động Wembley</h2>
+            <p>Wembley Stadium là sân vận động huyền thoại của bóng đá Anh. Không chỉ là nơi tổ chức những trận đấu đỉnh cao, Wembley còn là địa điểm của những buổi hòa nhạc mang tầm quốc tế.</p>
+        </section>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const heading = document.getElementById("heading");
+                const aboutSection = document.getElementById("about");
+                let headingShown = false;
+                let aboutShown = false;
+
+                window.addEventListener("scroll", function() {
+                    const headingPos = heading.getBoundingClientRect().top;
+                    const screenPos = window.innerHeight / 1.2;
+
+                    if (!headingShown && headingPos < screenPos) {
+                        heading.classList.add("show");
+                        headingShown = true;
+                    }
+
+                    // chỉ hiện phần giới thiệu sau khi heading đã hiện và cuộn tới
+                    const aboutPos = aboutSection.getBoundingClientRect().top;
+                    if (headingShown && !aboutShown && aboutPos < screenPos) {
+                        aboutSection.classList.add("show");
+                        aboutShown = true;
+                    }
+                });
+            });
+        </script>
+    </div> -->
+    <section class="about section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="section-title">
+                    <h2 data-title="Introduce">WEMBLEY Stadium</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="about-item">
+                    <h2>Welcome to Wembley Stadium</h2>
+                    <p>Wembley Stadium is the iconic home of English football and one of the most famous sports venues in the world. Located in London, it has a seating capacity of 90,000, making it the largest stadium in the UK and the second-largest in Europe. Opened in 2007, the modern Wembley is renowned for its striking design, including the 133-meter-high arch that dominates the skyline. The stadium hosts major football matches, including the FA Cup Final and international games, as well as world-class concerts and events.
+                    </p>
+                    <button class="btn">Learn more</button>
+                </div>
+                <div class="about-item">
+                    <img src="/Project/9950c611368ec098e77510afef25398c.jpg" alt=""> 
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- <div style="width: 800px; height: 800px;"> Box3</div> -->
+     <div>1111111111</div>
+
+</body>
+</html>

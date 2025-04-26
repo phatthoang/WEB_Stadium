@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thống kê doanh thu</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-6">
+
+  <div class="max-w-6xl mx-auto">
+    <!-- Tiêu đề -->
+    <h1 class="text-3xl font-bold text-center mb-4">THỐNG KÊ DOANH THU</h1>
+
+    <!-- Bộ chọn ngày -->
+    <div class="flex justify-center items-center mb-4">
+      <label for="datePicker" class="mr-3 text-lg font-medium">Chọn ngày:</label>
+      <input type="date" id="datePicker" class="px-4 py-2 border border-gray-300 rounded-md shadow">
+    </div>
+
+    <!-- Bộ chọn kiểu thống kê -->
+    <div class="flex justify-center items-center mb-8">
+      <label for="statType" class="mr-3 text-lg font-medium">Chọn kiểu thống kê:</label>
+      <select id="statType" class="px-4 py-2 border border-gray-300 rounded-md shadow">
+        <option value="revenueByField">Doanh thu theo sân</option>
+        <option value="revenueByHour">Doanh thu theo giờ</option>
+        <option value="bookingCountByField">Số lượt đặt theo sân</option>
+      </select>
+    </div>
+
+    <!-- Thẻ thống kê tổng quát -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+      <div class="bg-white p-6 rounded-xl shadow text-center">
+        <h2 class="text-xl font-semibold mb-2">Tổng doanh thu</h2>
+        <p class="text-2xl font-bold text-green-600" id="totalRevenue">--</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow text-center">
+        <h2 class="text-xl font-semibold mb-2">Tổng lượt đặt sân</h2>
+        <p class="text-2xl font-bold text-blue-600" id="totalBookings">--</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow text-center">
+        <h2 class="text-xl font-semibold mb-2">Sân có doanh thu cao nhất</h2>
+        <p class="text-2xl font-bold text-purple-600" id="topField">--</p>
+      </div>
+    </div>
+
+    <!-- Biểu đồ -->
+    <div class="bg-white p-6 rounded-xl shadow">
+      <h2 class="text-xl font-semibold mb-4" id="chartTitle">Doanh thu theo từng sân</h2>
+      <canvas id="fieldRevenueChart" height="100"></canvas>
+    </div>
+  </div>
+
+  <script>
+    const sampleData = {
+      "2025-04-09": [
+        { time: "7:00", field: "W1", price: 200000 },
+        { time: "8:00", field: "W1", price: 140000 },
+        { time: "9:00", field: "W1", price: 280000 },
+        { time: "12:00", field: "W1", price: 140000 },
+        { time: "7:00", field: "W2", price: 200000 },
+        { time: "8:00", field: "W2", price: 140000 },
+        { time: "9:00", field: "W2", price: 200000 },
+        { time: "13:00", field: "W2", price: 200000 },
+        { time: "7:00", field: "W3", price: 140000 },
+        { time: "8:00", field: "W3", price: 280000 },
+        { time: "9:00", field: "W3", price: 140000 },
+        { time: "7:00", field: "W4", price: 280000 },
+        { time: "8:00", field: "W4", price: 280000 },
+        { time: "12:00", field: "W4", price: 140000 },
+        { time: "15:00", field: "W4", price: 200000 },
+      ]
+    };
+
+    const totalRevenueEl = document.getElementById('totalRevenue');
+    const totalBookingsEl = document.getElementById('totalBookings');
+    const topFieldEl = document.getElementById('topField');
+    const chartTitleEl = document.getElementById('chartTitle');
+
+    const ctx = document.getElementById('fieldRevenueChart').getContext('2d');
+    let chart;
+
+    function updateStats(bookings) {
+      const totalRevenue = bookings.reduce((sum, b) => sum + b.price, 0);
+      const totalBookings = bookings.length;
+
+      const revenueByField = {};
+      bookings.forEach(b => {
+        if (!revenueByField[b.field]) revenueByField[b.field] = 0;
+        revenueByField[b.field] += b.price;
+      });
+
+      const topField = Object.entries(revenueByField).sort((a, b) => b[1] - a[1])[0]?.[0] || 'Không có';
+
+      totalRevenueEl.textContent = totalRevenue.toLocaleString('vi-VN') + 'đ';
+      totalBookingsEl.textContent = totalBookings;
+      topFieldEl.textContent = 'Sân ' + topField;
+    }
+
+    function renderChart(bookings, statType) {
+      if (chart) chart.destroy();
+
+      let labels = [];
+      let data = [];
+
+      if (statType === "revenueByField") {
+        const revenueByField = {};
+        bookings.forEach(b => {
+          if (!revenueByField[b.field]) revenueByField[b.field] = 0;
+          revenueByField[b.field] += b.price;
+        });
+        labels = Object.keys(revenueByField).map(f => 'Sân ' + f);
+        data = Object.values(revenueByField);
+        chartTitleEl.textContent = 'Doanh thu theo từng sân';
+      } else if (statType === "revenueByHour") {
+        const revenueByHour = {};
+        bookings.forEach(b => {
+          if (!revenueByHour[b.time]) revenueByHour[b.time] = 0;
+          revenueByHour[b.time] += b.price;
+        });
+        labels = Object.keys(revenueByHour);
+        data = Object.values(revenueByHour);
+        chartTitleEl.textContent = 'Doanh thu theo từng giờ';
+      } else if (statType === "bookingCountByField") {
+        const bookingCount = {};
+        bookings.forEach(b => {
+          if (!bookingCount[b.field]) bookingCount[b.field] = 0;
+          bookingCount[b.field] += 1;
+        });
+        labels = Object.keys(bookingCount).map(f => 'Sân ' + f);
+        data = Object.values(bookingCount);
+        chartTitleEl.textContent = 'Số lượt đặt theo sân';
+      }
+
+      chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: statType === "bookingCountByField" ? "Lượt đặt" : "Doanh thu (VNĐ)",
+            data: data,
+            backgroundColor: ['#4ade80', '#60a5fa', '#c084fc', '#f87171']
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              ticks: {
+                callback: function(value) {
+                  return statType === "bookingCountByField" ? value : value.toLocaleString('vi-VN') + 'đ';
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    const datePicker = document.getElementById("datePicker");
+    const statTypeSelector = document.getElementById("statType");
+
+    function refresh() {
+      const selectedDate = datePicker.value;
+      const statType = statTypeSelector.value;
+      const bookings = sampleData[selectedDate] || [];
+      updateStats(bookings);
+      renderChart(bookings, statType);
+    }
+
+    datePicker.addEventListener("change", refresh);
+    statTypeSelector.addEventListener("change", refresh);
+
+    // Khởi tạo
+    datePicker.value = "2025-04-09";
+    refresh();
+  </script>
+</body>
+</html>
